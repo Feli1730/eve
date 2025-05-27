@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para a Eve 💖</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #fff0f5;
+            color: #4b2e2e;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        #startBox {
+            background-color: #ffb6c1;
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        #startBox:hover {
+            transform: scale(1.05);
+        }
+
+        #mainContent {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            max-width: 800px;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .mensagem {
+            font-size: 1.2em;
+            white-space: pre-wrap;
+            margin-bottom: 30px;
+            animation: fadeIn 1s ease forwards;
+        }
+
+        .foto {
+            width: 100%;
+            max-width: 600px;
+            border-radius: 10px;
+            margin: 10px 0;
+            display: none;
+            animation: fadeIn 1s ease forwards;
+            border: 5px solid #ffb6c1;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+
+        button {
+            padding: 10px 20px;
+            background-color: #ff69b4;
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-size: 1em;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<audio id="music" loop>
+    <source src="Luan Santana - Chuva de arroz (DVD Luan Santana Acústico).mp3" type="audio/mpeg">
+</audio>
+
+<div id="startBox" onclick="startLoveStory()">🎁 Clique para abrir a caixinha do amor</div>
+
+<div id="mainContent">
+    <div class="mensagem" id="mensagem"></div>
+    <button onclick="mostrarFotos()">Clique aqui para ver as fotos 💖</button>
+    <img src="images/foto2.jpg" class="foto">
+    <img src="images/foto3.jpg" class="foto">
+    <img src="images/foto4.jpg" class="foto">
+    <img src="images/foto5.jpg" class="foto">
+</div>
+
+<script>
+    const texto = `td começou com um beijo numa noite qlqr mansão, quem diria, mas não foi um noite qualquer, depois veio meu aniversário, e vc estava comigo dnv, neste dia eu me lembro q eu estava muito nervoso e fiquei um pouco quieto, eu todo esperançoso no dia dos namorados, até marcamos de se encontrar, mas você me deu um bolo kkkkk, lembro do dia que eu tava muito louco na rua da unicid e do nd eu comecei a tacar papel em vc, tentando chama sua atenção mmkkkkk, e naql noite mais tarde confessei q eu gostava de vc, nós era engraçado, mn eu nunk vou esquecer do dia q fui no completamente nada na sua casa as 1da manhã ir conhecer a sua mãe veio, totalmente uma loucura absurda, e ainda bem q ela gostou de mim e nunk esqueceu de mimkkkkk. amor acho que já estávamos a destinados um para um outro lkkkk
+
+Sinceramente eu não mudaria nada desse começo nosso. e faria tudo dnv! 
+sou muito grato por esses últimos 5 meses ao seu lado. e amor , eu sempre soube que ia perder aquela aposta mas, pensando bem, eu não perdi nada eu ganhei. ganhei a pessoa certa, ganhei o amor da minha vida, e nunca vou esquecer disso kkkkkk. e nunk vou pagar a aposta tbm mor kkk
+me sinto o neguinho mais sortudo do mundo porque Deus colocou você eve no meu caminho. eu te amo demais, amo estar com você, amo estar ao seu lado, amo a sua família kkkkk mesmo com toda a loucura q vem junto.
+
+antes de conhecer vc mor, eu nunk imaginei fazer uma família ou casar, mas vc chegou e eu percebi q mudou tudo, mudou meus pensamentos, me fez sonhar a ter isso td, me lembro q antes começarmos a namorar, já estávamos escolhendo os padrinhos e as cores do nosso casamento (um pouco emocionados eu acho, mas eu amo isso demais kkkkk). e sinto q de vdd que a gente vai viver aquela música do luan Santana, “Chuva de Arroz”!!
+
+nunk vou esquecer o que senti no fds do meu aniversário de ter aquela paz de ter encontrado vc eve. e Deus obrigado por ter colocado a eve na minha vida.
+
+(amor, véi eu tô chorando muito enquanto escrevo isso kkkkkk)
+
+vc não tem noção EVE, de como você me faz bem. de  como me transforma como homem, como ser humano, e mesmo sendo o seu aniversário hoje amor, quem ganhou o maior presente fui eu, por ter vc ao meu lado.
+
+Te amo.
+Te honro.
+Te vivo.
+Te escolho todos os dias.
+
+com todo o meu amor,
+Fefe ❤️`;
+
+    function startLoveStory() {
+        document.getElementById("startBox").style.display = "none";
+        document.getElementById("mainContent").style.display = "flex";
+        document.body.style.overflow = "auto";
+
+        const music = document.getElementById("music");
+    
+        // Garantir que vai tentar tocar o áudio mesmo se houver atrasos
+        const playPromise = music.play();
+
+        if (playPromise !== undefined) {
+            playPromise.then(() => {
+                console.log("Música tocando!");
+            }).catch((error) => {
+                console.warn("Falha ao tentar tocar a música automaticamente:", error);
+            });
+        }
+
+        escreverTexto();
+    }
+
+    function escreverTexto() {
+        const container = document.getElementById("mensagem");
+        let i = 0;
+
+        function digitar() {
+            if (i < texto.length) {
+                container.innerHTML += texto.charAt(i);
+                i++;
+                setTimeout(digitar, 20);
+            }
+        }
+        digitar();
+    }
+
+    function mostrarFotos() {
+        const fotos = document.querySelectorAll(".foto");
+        fotos.forEach((foto, index) => {
+            setTimeout(() => {
+                foto.style.display = "block";
+            }, index * 200);
+        });
+    }
+</script>
+
+</body>
+</html>
